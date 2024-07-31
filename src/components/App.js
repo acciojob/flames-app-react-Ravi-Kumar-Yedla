@@ -41,6 +41,7 @@ const App = () => {
         data-testid="input1"
         type="text"
         value={name1}
+        name='name1'
         onChange={(e) => setName1(e.target.value)}
         placeholder="Enter first name"
       />
@@ -49,6 +50,7 @@ const App = () => {
         data-testid="input2"
         type="text"
         value={name2}
+        name='name2'
         onChange={(e) => setName2(e.target.value)}
         placeholder="Enter second name"
       />
