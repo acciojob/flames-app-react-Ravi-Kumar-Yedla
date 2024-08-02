@@ -6,7 +6,7 @@ const flames = ['Friends', 'Love', 'Affection', 'Marriage', 'Enemy', 'Siblings']
 const App = () => {
   const [name1, setName1] = useState('');
   const [name2, setName2] = useState('');
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState('Enter names to calculate relationship');
 
   const calculateRelationship = () => {
     if (name1.trim() === '' || name2.trim() === '') {
@@ -31,7 +31,7 @@ const App = () => {
   const clearInput = () => {
     setName1('');
     setName2('');
-    setResult('');
+    setResult('Enter names to calculate relationship');
   }
 
 
@@ -56,16 +56,9 @@ const App = () => {
       />
       <button onClick={calculateRelationship} data-testid="calculate_relationship">Calculate Relationship Future</button>
       <button onClick={clearInput} data-testid="clear">Clear </button>
-      {/* {result && <h3 data-testid="answer">{result}</h3>} */}
-      <h3>Marriage</h3>
       <h3 data-testid="answer">{result}</h3>
     </div>
   )
 }
 
 export default App
-
-
-
-
-
