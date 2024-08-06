@@ -6,22 +6,36 @@ const flames = ['Friends', 'Love', 'Affection', 'Marriage', 'Enemy', 'Siblings']
 const App = () => {
   const [name1, setName1] = useState('');
   const [name2, setName2] = useState('');
-  const [result, setResult] = useState('Enter names to calculate relationship');
+  const [result, setResult] = useState('');
 
   const calculateRelationship = () => {
     if (name1.trim() === '' || name2.trim() === '') {
       setResult('Please Enter valid input');
       return;
     }
-    let name1Arr = name1.split('');
-    let name2Arr = name2.split('');
+    let name1Arr = name1.toLowerCase().split('');
+    let name2Arr = name2.toLowerCase().split('');
 
-    name1Arr.forEach(char => {
-      const index = name2Arr.indexOf(char);
-      if (index !== -1) {
-        name2Arr.splice(index, 1);
+
+    for(let i = 0; i < name1Arr.length; i++){
+      for(let j = 0; j < name2Arr.length; j++){
+        if(name1Arr[i] === name2Arr[j]){
+          name1Arr.splice(i, 1);
+          name2Arr.splice(j, 1);
+          i--;
+          j--;
+        }
       }
-    });
+    }
+
+    // name1Arr = name1Arr.filter(char => {
+    //   const index = name2Arr.indexOf(char);
+    //   if (index !== -1) {
+    //     name2Arr.splice(index, 1);
+    //     return false;
+    //   }
+    //   return true;
+    // });
 
     const lengthString = name1Arr.length + name2Arr.length;
     const remainingString = lengthString % 6;
@@ -31,7 +45,7 @@ const App = () => {
   const clearInput = () => {
     setName1('');
     setName2('');
-    setResult('Enter names to calculate relationship');
+    setResult('');
   }
 
 
@@ -57,6 +71,7 @@ const App = () => {
       <button onClick={calculateRelationship} data-testid="calculate_relationship">Calculate Relationship Future</button>
       <button onClick={clearInput} data-testid="clear">Clear </button>
       <h3 data-testid="answer">{result}</h3>
+      {/* <h3>{Marriage}</h3> */}
     </div>
   )
 }
